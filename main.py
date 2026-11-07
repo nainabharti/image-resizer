@@ -53,3 +53,17 @@ print("\nFiles found:")
 # Display filenames one by one
 for filename in files:
     print(filename)
+
+# Filter supported image formats
+
+# Store supported image extensions
+supported_extensions = [".jpg", ".jpeg", ".png", ".webp"]
+
+print("\nSupported image files:")
+
+# Filter image files
+for filename in files:
+
+    # Convert filename to lowercase
+    if filename.lower().endswith(tuple(supported_extensions)):
+        print(filename)
