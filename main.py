@@ -1,3 +1,4 @@
+import os
 from PIL import Image
 
 # Store image path
@@ -29,3 +30,12 @@ print("\nImage resized successfully!")
 print("New Width:", resized_image.width)
 print("New Height:", resized_image.height)
 print("New Size:", resized_image.size) 
+
+# Create output path
+output_path = os.path.join("output_images","sample_image1.jpeg")
+
+# Save resized image
+resized_image.save(output_path)
+
+print("\nResized image saved successfully!")
+print("Output location:", output_path)
