@@ -39,3 +39,17 @@ resized_image.save(output_path)
 
 print("\nResized image saved successfully!")
 print("Output location:", output_path)
+
+# Retrieve all filenames
+
+# Store input folder path
+input_folder = "input_images"
+
+# Get all filenames from input folder
+files = os.listdir(input_folder)
+
+print("\nFiles found:")
+
+# Display filenames one by one
+for filename in files:
+    print(filename)
