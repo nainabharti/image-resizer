@@ -34,20 +34,25 @@ for filename in files:
             new_width = int(input("Enter new width: "))
             new_height = int(input("Enter new height: "))
 
-            # Store dimensions in a tuple
-            new_dimensions = (new_width, new_height)
+            # Validate dimensions
+            if new_width > 0 and new_height > 0:
 
-            # Resize the image
-            resized_image = image.resize(new_dimensions)
+                # Store dimensions in a tuple
+                new_dimensions = (new_width, new_height)
 
-            # Create output path using original filename
-            output_path = os.path.join(output_folder, filename)
+                # Resize the image
+                resized_image = image.resize(new_dimensions)
 
-            # Save resized image
-            resized_image.save(output_path)
+                # Create output path using original filename
+                output_path = os.path.join(output_folder, filename)
 
-            print("Image resized and saved successfully!")
-            print("Output location:", output_path)
+                # Save resized image
+                resized_image.save(output_path)
+
+                print("Image resized and saved successfully!")
+                print("Output location:", output_path)
+            else:
+                print("Invalid dimensions! Width and height must be positive.")
         except Exception as e:
             # Handle errors
             print("Error processing", filename)
