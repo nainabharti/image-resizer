@@ -5,6 +5,9 @@ from PIL import Image
 input_folder = "input_images"
 output_folder = "output_images"
 
+# Create output folder automatically if it doesn't exist
+os.makedirs(output_folder, exist_ok=True)
+
 # Store supported image extensions
 supported_extensions = [".jpg", ".jpeg", ".png", ".webp"]
 
