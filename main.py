@@ -18,36 +18,40 @@ for filename in files:
 
     # Check whether the file has a supported extension
     if filename.lower().endswith(tuple(supported_extensions)):
+        try:
+            # Create input image path
+            image_path = os.path.join(input_folder, filename)
 
-        # Create input image path
-        image_path = os.path.join(input_folder, filename)
+            # Open the image
+            image = Image.open(image_path)
 
-        # Open the image
-        image = Image.open(image_path)
+            print("Image opened:", filename)
 
-        print("Image opened:", filename)
+            # Display original dimensions
+            print("Original Size:", image.size)
 
-        # Display original dimensions
-        print("Original Size:", image.size)
+            # Take new dimensions from user
+            new_width = int(input("Enter new width: "))
+            new_height = int(input("Enter new height: "))
 
-        # Take new dimensions from user
-        new_width = int(input("Enter new width: "))
-        new_height = int(input("Enter new height: "))
+            # Store dimensions in a tuple
+            new_dimensions = (new_width, new_height)
 
-        # Store dimensions in a tuple
-        new_dimensions = (new_width, new_height)
+            # Resize the image
+            resized_image = image.resize(new_dimensions)
 
-        # Resize the image
-        resized_image = image.resize(new_dimensions)
+            # Create output path using original filename
+            output_path = os.path.join(output_folder, filename)
 
-        # Create output path using original filename
-        output_path = os.path.join(output_folder, filename)
+            # Save resized image
+            resized_image.save(output_path)
 
-        # Save resized image
-        resized_image.save(output_path)
-
-        print("Image resized and saved successfully!")
-        print("Output location:", output_path)
+            print("Image resized and saved successfully!")
+            print("Output location:", output_path)
+        except Exception as e:
+            # Handle errors
+            print("Error processing", filename)
+            print("Reason:", e)
         print("-" * 40)
 
 print("All supported images processed!")
