@@ -1,69 +1,53 @@
 import os
 from PIL import Image
 
-# Store image path
-image_path = "input_images/sample_image1.jpeg"
-
-# Open the image
-image = Image.open(image_path)
-
-print("Image opened successfully!")
-
-# Display image properties
-print("Width:", image.width)
-print("Height:", image.height)
-print("Size:", image.size)
-
-# Take new dimensions from user
-new_width = int(input("Enter new width: "))
-new_height = int(input("Enter new height: "))
-
-# Store dimensions in a tuple
-new_dimensions = (new_width, new_height)
-
-# Resize the image
-resized_image = image.resize(new_dimensions)
-
-print("\nImage resized successfully!")
-
-# Display resized image properties
-print("New Width:", resized_image.width)
-print("New Height:", resized_image.height)
-print("New Size:", resized_image.size) 
-
-# Create output path
-output_path = os.path.join("output_images","sample_image1.jpeg")
-
-# Save resized image
-resized_image.save(output_path)
-
-print("\nResized image saved successfully!")
-print("Output location:", output_path)
-
-# Retrieve all filenames
-
-# Store input folder path
+# Store input and output folder path
 input_folder = "input_images"
-
-# Get all filenames from input folder
-files = os.listdir(input_folder)
-
-print("\nFiles found:")
-
-# Display filenames one by one
-for filename in files:
-    print(filename)
-
-# Filter supported image formats
+output_folder = "output_images"
 
 # Store supported image extensions
 supported_extensions = [".jpg", ".jpeg", ".png", ".webp"]
 
-print("\nSupported image files:")
+# Get all filename from input folder
+files = os.listdir(input_folder)
 
-# Filter image files
+print("Processing images....\n")
+
+# Process each supported image
 for filename in files:
 
-    # Convert filename to lowercase
+    # Check whether the file has a supported extension
     if filename.lower().endswith(tuple(supported_extensions)):
-        print(filename)
+
+        # Create input image path
+        image_path = os.path.join(input_folder, filename)
+
+        # Open the image
+        image = Image.open(image_path)
+
+        print("Image opened:", filename)
+
+        # Display original dimensions
+        print("Original Size:", image.size)
+
+        # Take new dimensions from user
+        new_width = int(input("Enter new width: "))
+        new_height = int(input("Enter new height: "))
+
+        # Store dimensions in a tuple
+        new_dimensions = (new_width, new_height)
+
+        # Resize the image
+        resized_image = image.resize(new_dimensions)
+
+        # Create output path using original filename
+        output_path = os.path.join(output_folder, filename)
+
+        # Save resized image
+        resized_image.save(output_path)
+
+        print("Image resized and saved successfully!")
+        print("Output location:", output_path)
+        print("-" * 40)
+
+print("All supported images processed!")
