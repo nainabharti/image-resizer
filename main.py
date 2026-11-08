@@ -30,29 +30,37 @@ for filename in files:
             # Display original dimensions
             print("Original Size:", image.size)
 
-            # Take new dimensions from user
-            new_width = int(input("Enter new width: "))
-            new_height = int(input("Enter new height: "))
+            while True:
+                try:
+                    # Take new dimensions from user
+                    new_width = int(input("Enter new width: "))
+                    new_height = int(input("Enter new height: "))
 
-            # Validate dimensions
-            if new_width > 0 and new_height > 0:
+                    # Validate dimensions
+                    if new_width > 0 and new_height > 0:
+                        break
 
-                # Store dimensions in a tuple
-                new_dimensions = (new_width, new_height)
+                    else:
+                        print("Invalid dimensions! Enter positive values.")
 
-                # Resize the image
-                resized_image = image.resize(new_dimensions)
+                except ValueError:
+                    print("Please enter numbers only!")
 
-                # Create output path using original filename
-                output_path = os.path.join(output_folder, filename)
+            # Store dimensions in a tuple
+            new_dimensions = (new_width, new_height)
 
-                # Save resized image
-                resized_image.save(output_path)
+            # Resize the image
+            resized_image = image.resize(new_dimensions)
 
-                print("Image resized and saved successfully!")
-                print("Output location:", output_path)
-            else:
-                print("Invalid dimensions! Width and height must be positive.")
+            # Create output path using original filename
+            output_path = os.path.join(output_folder, filename)
+
+            # Save resized image
+            resized_image.save(output_path)
+
+            print("Image resized and saved successfully!")
+            print("Output location:", output_path)
+            
         except Exception as e:
             # Handle errors
             print("Error processing", filename)
